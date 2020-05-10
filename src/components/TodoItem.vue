@@ -1,16 +1,18 @@
 <template>
-  <div class="todo-item" v-bind:class="{'is-complete': todo.complete}">
+  <div class="todo-item" v-bind:class="{ 'is-complete': todo.complete }">
     <p>
       <input type="checkbox" v-on:change="markComplete" />
-      {{todo.title}}
+      <router-link v-bind:to="`/provider/${todo.id}`">{{
+        todo.title
+      }}</router-link>
       <button @click="$emit('del-todo', todo.id)" class="del">x</button>
     </p>
   </div>
 </template>
 <script>
 export default {
-  name: "TodoItem",
-  props: ["todo"],
+  name: 'TodoItem',
+  props: ['todo'],
   methods: {
     markComplete() {
       this.todo.completed = !this.todo.completed;
